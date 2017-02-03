@@ -1,0 +1,96 @@
+# How to install ELK stack on Ubuntu 16.04 LTS
+
+# Install OpenJDK version 8
+
+sudo apt-get install openjdk-8-jdk
+
+# Add the distribution APT packages
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch 
+sudo apt-key add - echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" 
+sudo tee -a /etc/apt/sources.list.d/elasticsearch-5.x.list
+
+# Install elasticsearch
+sudo apt-get update && sudo apt-get install elasticsearch
+
+# Before starting Elasticsearch (sudo service elasticsearch start), 
+# you’ll need to decide how much memory you’re willing to give it. 
+# This is specified by changing -Xms and -Xmx in 
+# /etc/elasticsearch/jvm.options.   The rule of thumb is to 
+# start with half of the total available memory of the server 
+# as the value for both options; this will leave the other 
+# half available to the operating system for caching.
+
+# start elastic search
+sudo service elasticsearch start
+
+# check and make sure it is running
+#sudo service elasticsearch status
+
+
+# Install Kibana
+sudo apt-get install kibana
+
+# Start Kibana & make sure it is running
+sudo service kibana start
+sudo service kibana status
+
+# Now install Filebeat
+sudo apt-get install filebeat
+
+# start filebeat
+sudo service filebeat start
+
+# Install Logstash
+sudo apt-get install logstash
+
+# Create a logstash.conf file 
+sudo nano /etc/logstash/conf.d/logstash.conf
+
+# Now you need to modify the filebeats configuration file to
+# output logstash.  Comment out elasticsearch section and use the
+# logstash section
+sudo nano /etc/filebeat/filebeat.yml
+
+# Stop the filebeat service
+sudo service filebeat stop
+
+# Remove the registry file from before
+sudo rm /var/lib/filebeat/registry
+
+# Delete any existing data in Elasticsearch
+curl -XDELETE localhost:9200/filebeat*
+
+# Start Logstash and Filebeat and chck status
+sudo service logstash start; sudo service filebeat start
+sudo service logstash status
+sudo service filebeat status
+
+
+#
+# Customize Elasticsearch configuration file
+#
+sudo nano /etc/elasticsearch/elasticsearch.yml
+
+# Modify the following options
+# cluster-name: 312-Woodland-Park-Lane 
+# node.name: elk-base
+# node.attr.rack: vm
+
+# restart elasticsearch service
+sudo service elasticsearch restart
+
+# modify logstash.conf to accept syslogs
+#    filter {
+#      if [type] == "syslog" {
+#        grok {
+#          match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+#          add_field => [ "received_at", "%{@timestamp}" ]
+#          add_field => [ "received_from", "%{host}" ]
+#        }
+#        syslog_pri { }
+#        date {
+#          match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+#        }
+#      }
+#    }
+
