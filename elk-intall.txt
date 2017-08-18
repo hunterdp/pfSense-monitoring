@@ -71,26 +71,22 @@ sudo service filebeat status
 #
 sudo nano /etc/elasticsearch/elasticsearch.yml
 
-# Modify the following options
-# cluster-name: 312-Woodland-Park-Lane 
-# node.name: elk-base
-# node.attr.rack: vm
+# Modify the following options (optional)
+# cluster-name:  
+# node.name: 
+# node.attr.rack: 
 
 # restart elasticsearch service
 sudo service elasticsearch restart
 
-# modify logstash.conf to accept syslogs
-#    filter {
-#      if [type] == "syslog" {
-#        grok {
-#          match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
-#          add_field => [ "received_at", "%{@timestamp}" ]
-#          add_field => [ "received_from", "%{host}" ]
-#        }
-#        syslog_pri { }
-#        date {
-#          match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
-#        }
-#      }
-#    }
-
+#
+# Add the logstash conf files
+#  - Note that the files are concatenated together in lexical order.
+#  - Model is xx-inputs.conf  --> defines the input channels for receiving information
+#             xx-xxxxxx.conf  --> defines the filtering options for that log format
+#             xx-outputs.conf --> defines the output options.
+# current ones are:
+# 01-inputs.conf (ports 5000 -> syslog and pfsense defined)
+# 10-syslog.conf (syslog filtering)
+# 11-pfsense.conf (pfsense firewall events filtering)
+# 30-outputs.conf (pipe it all to elasticsearch)
