@@ -88,5 +88,8 @@ sudo service elasticsearch restart
 # current ones are:
 # 01-inputs.conf (ports 5000 -> syslog and pfsense defined)
 # 10-syslog.conf (syslog filtering)
+# 10-syslog-esxi.conf (esxi filtering, not VirtualCenter)
 # 11-pfsense.conf (pfsense firewall events filtering)
 # 30-outputs.conf (pipe it all to elasticsearch)
+
+
