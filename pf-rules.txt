@@ -1,306 +1,102 @@
 @0(0) scrub on fxp0 all fragment reassemble
-  [ Evaluations: 113021771  Packets: 50067696  Bytes: 13457414295  States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @1(0) scrub on fxp1 all fragment reassemble
-  [ Evaluations: 62967811  Packets: 50234874  Bytes: 13629729560  States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @0(0) anchor "relayd/*" all
-  [ Evaluations: 1284415   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @1(0) anchor "openvpn/*" all
-  [ Evaluations: 1284409   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @2(0) anchor "ipsec/*" all
-  [ Evaluations: 1284410   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @3(1000000001) pass in quick on lo0 inet6 all flags S/SA keep state label "pass IPv6 loopback"
-  [ Evaluations: 1307499   Packets: 27478     Bytes: 12525528    States: 3     ]
-  [ Inserted: pid 71102 State Creations: 2781  ]
 @4(1000000002) pass out quick on lo0 inet6 all flags S/SA keep state label "pass IPv6 loopback"
-  [ Evaluations: 13285     Packets: 27486     Bytes: 12526152    States: 3     ]
-  [ Inserted: pid 71102 State Creations: 2783  ]
 @5(1000000003) block drop in log quick inet6 all label "Block all IPv6"
-  [ Evaluations: 1280921   Packets: 61539     Bytes: 9982056     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @6(1000000004) block drop out log quick inet6 all label "Block all IPv6"
-  [ Evaluations: 575457    Packets: 19366     Bytes: 1914185     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @7(1000000101) block drop in log quick inet from 169.254.0.0/16 to any label "Block IPv4 link-local"
-  [ Evaluations: 1221020   Packets: 2         Bytes: 192         States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @8(1000000102) block drop in log quick inet from any to 169.254.0.0/16 label "Block IPv4 link-local"
-  [ Evaluations: 654429    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @9(1000000103) block drop in log inet all label "Default deny rule IPv4"
-  [ Evaluations: 654429    Packets: 32439     Bytes: 2306521     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @10(1000000104) block drop out log inet all label "Default deny rule IPv4"
-  [ Evaluations: 1221016   Packets: 17        Bytes: 884         States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @11(1000000105) block drop in log inet6 all label "Default deny rule IPv6"
-  [ Evaluations: 1221014   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @12(1000000106) block drop out log inet6 all label "Default deny rule IPv6"
-  [ Evaluations: 566587    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @13(1000000107) pass quick inet6 proto ipv6-icmp all icmp6-type unreach keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @14(1000000107) pass quick inet6 proto ipv6-icmp all icmp6-type toobig keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @15(1000000107) pass quick inet6 proto ipv6-icmp all icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @16(1000000107) pass quick inet6 proto ipv6-icmp all icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @17(1000000108) pass out quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type echorep keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @18(1000000108) pass out quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type routersol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @19(1000000108) pass out quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type routeradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @20(1000000108) pass out quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @21(1000000108) pass out quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @22(1000000109) pass out quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type echorep keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @23(1000000109) pass out quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type routersol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @24(1000000109) pass out quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type routeradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @25(1000000109) pass out quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @26(1000000109) pass out quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @27(1000000110) pass in quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type echoreq keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @28(1000000110) pass in quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type routersol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @29(1000000110) pass in quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type routeradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @30(1000000110) pass in quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @31(1000000110) pass in quick inet6 proto ipv6-icmp from fe80::/10 to fe80::/10 icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @32(1000000111) pass in quick inet6 proto ipv6-icmp from ff02::/16 to fe80::/10 icmp6-type echoreq keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @33(1000000111) pass in quick inet6 proto ipv6-icmp from ff02::/16 to fe80::/10 icmp6-type routersol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @34(1000000111) pass in quick inet6 proto ipv6-icmp from ff02::/16 to fe80::/10 icmp6-type routeradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @35(1000000111) pass in quick inet6 proto ipv6-icmp from ff02::/16 to fe80::/10 icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @36(1000000111) pass in quick inet6 proto ipv6-icmp from ff02::/16 to fe80::/10 icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @37(1000000112) pass in quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type echoreq keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @38(1000000112) pass in quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type routersol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @39(1000000112) pass in quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type routeradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @40(1000000112) pass in quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type neighbrsol keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @41(1000000112) pass in quick inet6 proto ipv6-icmp from fe80::/10 to ff02::/16 icmp6-type neighbradv keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @42(1000000113) block drop log quick inet proto tcp from any port = 0 to any label "Block traffic from port 0"
-  [ Evaluations: 1221016   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @43(1000000113) block drop log quick inet proto udp from any port = 0 to any label "Block traffic from port 0"
-  [ Evaluations: 1010283   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @44(1000000114) block drop log quick inet proto tcp from any to any port = 0 label "Block traffic to port 0"
-  [ Evaluations: 1221014   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @45(1000000114) block drop log quick inet proto udp from any to any port = 0 label "Block traffic to port 0"
-  [ Evaluations: 1010284   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @46(1000000115) block drop log quick inet6 proto tcp from any port = 0 to any label "Block traffic from port 0"
-  [ Evaluations: 1221017   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @47(1000000115) block drop log quick inet6 proto udp from any port = 0 to any label "Block traffic from port 0"
-  [ Evaluations: 16544     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @48(1000000116) block drop log quick inet6 proto tcp from any to any port = 0 label "Block traffic to port 0"
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @49(1000000116) block drop log quick inet6 proto udp from any to any port = 0 label "Block traffic to port 0"
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @50(1000000117) block drop log quick from <snort2c:0> to any label "Block snort2c hosts"
-  [ Evaluations: 1221017   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @51(1000000118) block drop log quick from any to <snort2c:0> label "Block snort2c hosts"
-  [ Evaluations: 1221017   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @52(1000000201) block drop in log quick proto carp from (self:10) to any
-  [ Evaluations: 1221017   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @53(1000000202) pass quick proto carp all no state
-  [ Evaluations: 566589    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @54(1000000301) block drop in log quick proto tcp from <sshlockout:0> to (self:10) port = ssh label "sshlockout"
-  [ Evaluations: 1221018   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @55(1000000351) block drop in log quick proto tcp from <webConfiguratorlockout:0> to (self:10) port = https label "webConfiguratorlockout"
-  [ Evaluations: 166711    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @56(1000000400) block drop in log quick from <virusprot:0> to any label "virusprot overload table"
-  [ Evaluations: 657610    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @57(11000) block drop in log quick on fxp0 from <bogons:3842> to any label "block bogon IPv4 networks from WAN"
-  [ Evaluations: 657610    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @58(1000001570) block drop in log on ! fxp0 inet from 107.3.164.0/22 to any
-  [ Evaluations: 654429    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @59(1000001570) block drop in log inet from 107.3.165.147 to any
-  [ Evaluations: 654429    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @60(1000001570) block drop in log on fxp0 inet6 from fe80::2e0:b6ff:fe00:2cc8 to any
-  [ Evaluations: 654429    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @61(12000) block drop in log quick on fxp0 inet from 10.0.0.0/8 to any label "Block private networks from WAN block 10/8"
-  [ Evaluations: 30722     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @62(12000) block drop in log quick on fxp0 inet from 127.0.0.0/8 to any label "Block private networks from WAN block 127/8"
-  [ Evaluations: 30722     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @63(12000) block drop in log quick on fxp0 inet from 172.16.0.0/12 to any label "Block private networks from WAN block 172.16/12"
-  [ Evaluations: 30722     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @64(12000) block drop in log quick on fxp0 inet from 192.168.0.0/16 to any label "Block private networks from WAN block 192.168/16"
-  [ Evaluations: 30722     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @65(12000) block drop in log quick on fxp0 inet6 from fc00::/7 to any label "Block ULA networks from WAN block fc00::/7"
-  [ Evaluations: 30722     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @66(1000001591) pass in on fxp0 proto udp from any port = bootps to any port = bootpc keep state label "allow dhcp client out WAN"
-  [ Evaluations: 30692     Packets: 22        Bytes: 7232        States: 0     ]
-  [ Inserted: pid 71102 State Creations: 15    ]
 @67(1000001592) pass out on fxp0 proto udp from any port = bootpc to any port = bootps keep state label "allow dhcp client out WAN"
-  [ Evaluations: 585688    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @68(1000002620) block drop in log on ! fxp1 inet from 192.168.0.0/16 to any
-  [ Evaluations: 1221018   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @69(1000002620) block drop in log on ! fxp1 inet from 10.10.10.1 to any
-  [ Evaluations: 57742     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @70(1000002620) block drop in log inet from 192.168.1.250 to any
-  [ Evaluations: 668323    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @71(1000002620) block drop in log inet from 10.10.10.1 to any
-  [ Evaluations: 665020    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @72(1000002620) block drop in log on fxp1 inet6 from fe80::2e0:b6ff:fe00:2cc9 to any
-  [ Evaluations: 665020    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @73(1000002641) pass in quick on fxp1 inet proto udp from any port = bootpc to 255.255.255.255 port = bootps keep state label "allow access to DHCP server"
-  [ Evaluations: 612491    Packets: 321       Bytes: 164521      States: 0     ]
-  [ Inserted: pid 71102 State Creations: 264   ]
 @74(1000002642) pass in quick on fxp1 inet proto udp from any port = bootpc to 192.168.1.250 port = bootps keep state label "allow access to DHCP server"
-  [ Evaluations: 987       Packets: 1883      Bytes: 680975      States: 0     ]
-  [ Inserted: pid 71102 State Creations: 985   ]
 @75(1000002643) pass out quick on fxp1 inet proto udp from 192.168.1.250 port = bootps to any port = bootpc keep state label "allow access to DHCP server"
-  [ Evaluations: 1001017   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @76(1000002651) pass quick on fxp1 inet6 proto udp from fe80::/10 to fe80::/10 port = dhcpv6-client keep state label "allow access to DHCPv6 server"
-  [ Evaluations: 435531    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @77(1000002652) pass quick on fxp1 inet6 proto udp from fe80::/10 to ff02::/16 port = dhcpv6-client keep state label "allow access to DHCPv6 server"
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @78(1000002653) pass quick on fxp1 inet6 proto udp from fe80::/10 to ff02::/16 port = dhcpv6-server keep state label "allow access to DHCPv6 server"
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @79(1000002654) pass quick on fxp1 inet6 proto udp from ff02::/16 to fe80::/10 port = dhcpv6-server keep state label "allow access to DHCPv6 server"
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @80(1000003711) pass in on lo0 inet all flags S/SA keep state label "pass IPv4 loopback"
-  [ Evaluations: 1219765   Packets: 3042321   Bytes: 3745716665  States: 22    ]
-  [ Inserted: pid 71102 State Creations: 10442 ]
 @81(1000003712) pass out on lo0 inet all flags S/SA keep state label "pass IPv4 loopback"
-  [ Evaluations: 21000     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @82(1000003713) pass in on lo0 inet6 all flags S/SA keep state label "pass IPv6 loopback"
-  [ Evaluations: 21000     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @83(1000003714) pass out on lo0 inet6 all flags S/SA keep state label "pass IPv6 loopback"
-  [ Evaluations: 10496     Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @84(1000003715) pass out inet all flags S/SA keep state allow-opts label "let out anything IPv4 from firewall host itself"
-  [ Evaluations: 1219762   Packets: 3340360   Bytes: 3929704033  States: 27    ]
-  [ Inserted: pid 71102 State Creations: 13720 ]
 @85(1000003716) pass out inet6 all flags S/SA keep state allow-opts label "let out anything IPv6 from firewall host itself"
-  [ Evaluations: 566586    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @86(1000003811) pass out route-to (fxp0 107.3.164.1) inet from 107.3.165.147 to ! 107.3.164.0/22 flags S/SA keep state allow-opts label "let out anything from firewall host itself"
-  [ Evaluations: 566587    Packets: 31674455  Bytes: 23853428672  States: 61    ]
-  [ Inserted: pid 71102 State Creations: 542262]
 @87(10000) pass in quick on fxp1 proto tcp from any to (fxp1:3) port = https flags S/SA keep state label "anti-lockout rule"
-  [ Evaluations: 1228653   Packets: 4431      Bytes: 2629886     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 31    ]
 @88(10000) pass in quick on fxp1 proto tcp from any to (fxp1:3) port = http flags S/SA keep state label "anti-lockout rule"
-  [ Evaluations: 152653    Packets: 2789      Bytes: 1508365     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 1     ]
 @89(10000) pass in quick on fxp1 proto tcp from any to (fxp1:3) port = ssh flags S/SA keep state label "anti-lockout rule"
-  [ Evaluations: 152652    Packets: 2767      Bytes: 1506487     States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @90(0) anchor "userrules/*" all
-  [ Evaluations: 1203192   Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @91(0) pass in quick on openvpn inet all flags S/SA keep state label "USER_RULE: OpenVPN  wizard"
-  [ Evaluations: 1203189   Packets: 267599    Bytes: 183458400   States: 29    ]
-  [ Inserted: pid 71102 State Creations: 742   ]
 @92(100000101) pass in quick on fxp1 inet from 192.168.0.0/16 to any flags S/SA keep state label "USER_RULE: Default allow LAN to any rule"
-  [ Evaluations: 1227864   Packets: 28404126  Bytes: 20265859356  States: 152   ]
-  [ Inserted: pid 71102 State Creations: 604218]
 @93(100000101) pass in quick on fxp1 inet from 10.10.10.1 to any flags S/SA keep state label "USER_RULE: Default allow LAN to any rule"
-  [ Evaluations: 27193     Packets: 148815    Bytes: 116179990   States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @94(0) pass in quick on fxp0 reply-to (fxp0 107.3.164.1) inet proto udp from any to 107.3.165.147 port = openvpn keep state label "USER_RULE: OpenVPN  wizard"
-  [ Evaluations: 594929    Packets: 268925    Bytes: 215761492   States: 1     ]
-  [ Inserted: pid 71102 State Creations: 3     ]
 @95(0) anchor "tftp-proxy/*" all
-  [ Evaluations: 598231    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @96(0) pass in quick on fxp1 proto tcp from any to (fxp1:3) port = 3128 flags S/SA keep state
-  [ Evaluations: 598225    Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @97(0) pass in quick on fxp1 proto tcp from any to (fxp1:3) port = 3129 flags S/SA keep state
-  [ Evaluations: 0         Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
 @98(0) pass in quick on fxp0 proto tcp from any to (fxp0:2) port = 3128 flags S/SA keep state
-  [ Evaluations: 594923    Packets: 115       Bytes: 26508       States: 0     ]
-  [ Inserted: pid 71102 State Creations: 14    ]
 @99(0) pass in quick on fxp0 proto tcp from any to (fxp0:2) port = 3129 flags S/SA keep state
-  [ Evaluations: 3267      Packets: 0         Bytes: 0           States: 0     ]
-  [ Inserted: pid 71102 State Creations: 0     ]
