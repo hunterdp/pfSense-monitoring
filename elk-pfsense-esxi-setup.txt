@@ -1,0 +1,23 @@
+#  The following describes how to configure pfSense, esxi and other services to
+#  send their syslogs to an ELK server instance that has already been setup. 
+#  It assumes that you have ELK running on an Ubuntu 16.04 LTS that is
+#  frontended by NGINX proxy server.  This was derived from multiple sources and 
+#  customized to work in my environment.  It should work with pfSense 2.3.x and
+#  versions of ESXi 5.5 and above.  
+#
+#  NB: I should move this to a puppet script
+
+#
+# Add the logstash conf files
+#  - Note that the files are concatenated together in lexical order.
+#  - Model is xx-inputs.conf  --> defines the input channels for receiving information
+#             xx-xxxxxx.conf  --> defines the filtering options for that log format
+#             xx-outputs.conf --> defines the output options.
+# current ones are:
+# 01-inputs.conf (ports 5000 -> syslog and pfsense defined)
+# 10-syslog.conf (syslog filtering)
+# 10-syslog-esxi.conf (esxi filtering, not VirtualCenter)
+# 11-pfsense.conf (pfsense firewall events filtering)
+# 30-outputs.conf (pipe it all to elasticsearch)
+
+
