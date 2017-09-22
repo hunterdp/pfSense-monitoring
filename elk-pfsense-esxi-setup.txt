@@ -7,17 +7,24 @@
 #
 #  NB: I should move this to a puppet script
 
-#
-# Add the logstash conf files
-#  - Note that the files are concatenated together in lexical order.
-#  - Model is xx-inputs.conf  --> defines the input channels for receiving information
+#  Copy the logstash conf files to /etc/logstash/conf.d/
+#    - Note that the files are concatenated together in lexical order.
+#    - Model is xx-inputs.conf  --> defines the input channels for receiving information
 #             xx-xxxxxx.conf  --> defines the filtering options for that log format
 #             xx-outputs.conf --> defines the output options.
-# current ones are:
-# 01-inputs.conf (ports 5000 -> syslog and pfsense defined)
-# 10-syslog.conf (syslog filtering)
-# 10-syslog-esxi.conf (esxi filtering, not VirtualCenter)
-# 11-pfsense.conf (pfsense firewall events filtering)
-# 30-outputs.conf (pipe it all to elasticsearch)
+#  current ones are:
+#    01-inputs.conf (ports 5000 -> syslog and pfsense defined)
+#    10-syslog.conf (syslog filtering)
+#    10-syslog-esxi.conf (esxi filtering, not VirtualCenter)
+#    11-pfsense.conf (pfsense firewall events filtering)
+#    30-outputs.conf (pipe it all to elasticsearch)
 
+#  Copy the specific pfsense 2.3.x pattern file 
+mkdir /etc/logstash/conf.d/patterns
+cp pfsense2-3-1.grok /etc/logstash/conf.d/patterns/
+
+#  Create geoid data (NB: Need to make this a cron job since the data changes)
+cd /etc/logstash 
+sudo curl -O "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" 
+sudo gunzip GeoLiteCity.dat.gz
 
