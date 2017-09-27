@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "Firewall-External",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Firewall - External",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Firewall-External-Blocks-Map\",\"panelIndex\":6,\"row\":1,\"size_x\":6,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Firewall-External-Blocks-By-Time\",\"panelIndex\":8,\"row\":6,\"size_x\":12,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Firewall-External-Block-By-Country\",\"panelIndex\":9,\"row\":3,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Firewall-External-Blocks-Dest-Port\",\"panelIndex\":11,\"row\":8,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Firewall-External-Blocks-By-IPv\",\"panelIndex\":12,\"row\":8,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Firewall-External-Blocks-By-Protocol\",\"panelIndex\":13,\"row\":8,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Firewall-External-Blocks-By-Direction\",\"panelIndex\":16,\"row\":8,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Firewall-External-Blocks-Top-by-IPv4\",\"panelIndex\":18,\"row\":10,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"},{\"id\":\"Firewall-External-Blocks-Top-by-IPv6\",\"type\":\"visualization\",\"panelIndex\":19,\"size_x\":5,\"size_y\":4,\"col\":6,\"row\":10},{\"id\":\"Firewall-External-Blocks-Count-v4\",\"type\":\"visualization\",\"panelIndex\":20,\"size_x\":3,\"size_y\":2,\"col\":7,\"row\":1},{\"id\":\"Firewall-External-Blocks-Count-v6\",\"type\":\"visualization\",\"panelIndex\":21,\"size_x\":3,\"size_y\":2,\"col\":10,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{\"P-11\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}},\"vis\":{\"legendOpen\":true}},\"P-12\":{\"vis\":{\"legendOpen\":true}},\"P-13\":{\"vis\":{\"legendOpen\":true}},\"P-16\":{\"vis\":{\"legendOpen\":true}},\"P-8\":{\"vis\":{\"legendOpen\":false}},\"P-9\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}},\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-24h",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  }
+]
