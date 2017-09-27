@@ -1,14 +1,7 @@
-# GROK Custom Patterns (add to patterns directory and reference in GROK filter for pfSense events):
+# GROK Custom Patterns
 # GROK Patterns for pfSense 2.3 Logging Format
 #
 # taken from https://gist.github.com/elijahpaul/3d80030ac3e8138848b5
-# - adding PFSENSE_IGMP_DATA
-# - moved and tweaked IPv4 ECN pattern (ecn is a WORD, not INT)
-# - made PFSENSE_PROTOCOL_DATA optional in pattern (for ICMPv6)
-# - added overall PFSENSE_LOG_ENTRY pattern
-# - moved the ip_ver detection to version-specific rule to ensure proper identification
-# Edited 17 Aug 2017 by DavidHunter dph@alumni.neu.edu
-# - Added PFSENSE_APP_DATA parsing for web app logs messages.
 #
 # TODO: Add support for IPv6 "Options" messages.  Optional PFSENSE_PROTOCOL_DATA still allows this to be parsed, albeit not fully.
 #
@@ -55,3 +48,13 @@ DHCPREQUEST %{WORD:dhcp_action} for %{IPV4:dhcp_client_ip}%{SPACE}(\(%{IPV4:dhcp
 DHCPACK %{WORD:dhcp_action} on %{IPV4:dhcp_client_ip} to %{COMMONMAC:dhcp_client_mac}%{SPACE}(\(%{GREEDYDATA:dhcp_client_hostname}\))? via (?<dhcp_client_vlan>[0-9a-z_]*)
 DHCPINFORM %{WORD:dhcp_action} from %{IPV4:dhcp_client_ip} via %(?<dhcp_client_vlan>[0-9a-z_]*)
 DHCPRELEASE %{WORD:dhcp_action} of %{IPV4:dhcp_client_ip} from %{COMMONMAC:dhcp_client_mac}%{SPACE}(\(%{GREEDYDATA:dhcp_client_hostname}\))? via (?<dhcp_client_vlan>[0-9a-z_]*) %{GREEDYDATA:dhcp_release_message}
+
+#
+# Add NGINX patterns
+#  - To parse use the NGINXACCESS pattern
+#  - ToDo: Rationalize the different names for clientIPs, date/time, URIs, etc. to be more common accress 
+#          all patterns.
+#
+NGUSERNAME [a-zA-Z\.\@\-\+_%]+
+NGUSER %{NGUSERNAME}
+NGINXACCESS %{IPORHOST:clientip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:bytes}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}
